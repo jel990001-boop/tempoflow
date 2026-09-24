@@ -42,14 +42,13 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </style>
 
 <style id="mobile-pwa-styles">
-.mobile-planner-switch{display:none}.mobile-settings-nav{display:none}
+.mobile-planner-switch{display:none}
 @media(max-width:650px){
   html,body{min-height:100%;overscroll-behavior-y:none}
   body{padding-top:env(safe-area-inset-top);background:#f5f5f1;-webkit-tap-highlight-color:transparent}
   .app-shell{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
   .sidebar{height:calc(66px + env(safe-area-inset-bottom));padding:7px 6px calc(7px + env(safe-area-inset-bottom));}
-  .sidebar nav{grid-template-columns:repeat(5,1fr)}
-  .mobile-settings-nav{display:flex}
+  .sidebar nav{grid-template-columns:repeat(4,1fr)}
   .nav{min-width:0;font-size:19px}.nav span{font-size:10px;white-space:nowrap}
   .topbar{height:68px;padding:10px 14px;top:env(safe-area-inset-top)}
   .topbar h1{font-size:20px}.top-actions{gap:7px}.top-actions .primary{padding:10px 12px;font-size:12px}
@@ -89,7 +88,6 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <button class="nav" data-view="recurring">↻ <span>Recorrentes</span><em id="recCount">0</em></button>
       <button class="nav" data-view="projects">◇ <span>Projetos</span><em id="projectCount">0</em></button>
       <button class="nav" data-view="categories">◫ <span>Categorias</span></button>
-      <button class="nav mobile-settings-nav" data-view="settings">⚙ <span>Definições</span></button>
     </nav>
     <div class="sidebar-bottom">
       <div class="sync-state"><i></i><span>Guardado neste dispositivo</span></div>
