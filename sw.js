@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tempoflow-mobile-v0.1';
+const CACHE_NAME = 'tempoflow-mobile-v0.2';
 
 const APP_FILES = [
   './',
