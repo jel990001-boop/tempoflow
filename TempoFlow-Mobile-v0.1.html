@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f7f4">
+  <title>TempoFlow</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TempoFlow">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+  <style>
+:root{--bg:#f5f5f1;--panel:#fff;--ink:#1f2421;--muted:#7a817d;--line:#e8e8e2;--accent:#304f43;--accent2:#e7eee9;--high:#b65454;--med:#b07b34;--low:#668072;--shadow:0 12px 35px rgba(34,45,39,.07)}*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}.app-shell{min-height:100vh;display:grid;grid-template-columns:230px 1fr}.sidebar{position:sticky;top:0;height:100vh;background:#eeeee9;padding:26px 16px 18px;display:flex;flex-direction:column;border-right:1px solid #e2e2dc}.brand{display:flex;align-items:center;gap:11px;padding:0 8px 28px}.brand .logo{width:36px;height:36px;border-radius:11px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800}.brand b{display:block;font-size:17px}.brand small{color:var(--muted);font-size:11px}.sidebar nav{display:grid;gap:5px}.nav{border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:10px;color:#606762;display:flex;gap:10px;align-items:center;cursor:pointer}.nav span{flex:1}.nav em{font-style:normal;background:#dddeda;padding:1px 7px;border-radius:10px;font-size:11px}.nav.active{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.035)}.sidebar-bottom{margin-top:auto}.sync-state{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px;padding:10px 12px}.sync-state i{width:7px;height:7px;border-radius:50%;background:#6f927e}main{min-width:0}.topbar{height:94px;padding:20px 30px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(245,245,241,.86);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}.topbar h1{font-size:22px;margin:0 0 4px}.topbar p,.panel-head p,.calendar-head p,.section-intro p{margin:0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:9px}.primary,.ghost,.icon-btn,.chip{border:0;cursor:pointer;border-radius:10px}.primary{background:var(--accent);color:#fff;padding:10px 15px;font-weight:650}.ghost{background:#fff;border:1px solid var(--line);padding:9px 14px}.icon-btn{width:34px;height:34px;background:#f3f3ef;color:#535a56;font-size:20px}.view{display:none;padding:22px 30px 34px}.view.active{display:block}.planner-grid{display:grid;grid-template-columns:minmax(300px,35%) minmax(560px,65%);gap:18px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.pending-panel{min-height:calc(100vh - 140px);padding:19px}.panel-head,.calendar-head,.section-intro{display:flex;justify-content:space-between;align-items:center;gap:14px}.panel-head h2,.calendar-head h2,.section-intro h2,.simple-panel h2{font-size:16px;margin:0 0 4px}.filters{display:flex;gap:6px;margin:16px 0 12px;overflow:auto}.chip{padding:6px 10px;background:#f4f4f0;color:#747b76;font-size:11px;white-space:nowrap}.chip.active{background:var(--accent2);color:var(--accent);font-weight:700}.task-list{display:grid;gap:8px}.category-block{margin-top:14px}.category-title{display:flex;align-items:center;gap:7px;color:#656c68;font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.05em;margin:0 0 7px}.task{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:8px;padding:10px;border:1px solid #ededE8;border-radius:12px;background:#fff;cursor:pointer;transition:.15s}.task:hover{border-color:#d7d9d3;transform:translateY(-1px)}.check{width:18px;height:18px;border:1.5px solid #bfc4c0;border-radius:50%;display:grid;place-items:center;background:#fff;cursor:pointer}.task-title{font-size:13px;font-weight:650}.task-meta{font-size:10px;color:var(--muted);margin-top:3px}.priority{width:7px;height:7px;border-radius:50%}.priority.high{background:var(--high)}.priority.medium{background:var(--med)}.priority.low{background:var(--low)}.calendar-panel{overflow:hidden}.calendar-head{padding:17px 18px;border-bottom:1px solid var(--line)}.calendar-head>div{text-align:center}.calendar{display:grid;grid-template-columns:repeat(7,1fr);min-height:680px}.day{min-width:0;border-right:1px solid var(--line);padding:10px 7px;position:relative}.day:last-child{border-right:0}.day-head{text-align:center;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:8px}.day-head b{font-size:10px;color:var(--muted);display:block;text-transform:uppercase}.day-head strong{display:inline-grid;place-items:center;width:28px;height:28px;font-size:13px;margin-top:4px}.day.today .day-head strong{background:var(--accent);color:#fff;border-radius:50%}.day-drop{min-height:600px;display:grid;align-content:start;gap:6px}.event{border-left:3px solid var(--accent);background:#eef3f0;padding:8px 7px;border-radius:7px;cursor:pointer;overflow:hidden}.event.high{border-color:var(--high)}.event.medium{border-color:var(--med)}.event.low{border-color:var(--low)}.event time{font-size:9px;color:#6f7772}.event b{font-size:11px;display:block;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.section-intro{margin-bottom:18px}.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.rec-card,.cat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);cursor:pointer}.rec-card .row{display:flex;justify-content:space-between;gap:10px}.rec-card h3,.cat-card h3{font-size:14px;margin:0 0 5px}.rec-card p,.cat-card p{font-size:11px;color:var(--muted);margin:0}.rec-badge{display:inline-block;background:var(--accent2);color:var(--accent);padding:4px 7px;border-radius:7px;font-size:10px;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:15px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}.stat b{display:block;font-size:26px}.stat span{font-size:11px;color:var(--muted)}.simple-panel{padding:20px}.settings{max-width:760px}.setting-row{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}.setting-row:last-child{border-bottom:0}.setting-row b{font-size:13px}.setting-row p{font-size:11px;color:var(--muted);margin:4px 0 0;max-width:520px}.status{align-self:center;background:#f0f0ec;padding:5px 8px;border-radius:8px;font-size:10px;color:#717772}.status.ok{background:var(--accent2);color:var(--accent)}.backdrop{position:fixed;inset:0;background:rgba(24,30,27,.32);z-index:50;display:grid;place-items:center;padding:18px;backdrop-filter:blur(3px)}.backdrop.hidden,.hidden{display:none!important}.modal{width:min(520px,100%);background:#fff;border-radius:18px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.18)}.modal-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:18px}.modal-head small{font-size:9px;letter-spacing:.08em;color:var(--muted)}.modal-head h2{margin:3px 0 0;font-size:19px}form label{display:grid;gap:6px;font-size:11px;font-weight:700;color:#555d58}form label span{font-weight:400;color:var(--muted)}input,select{width:100%;border:1px solid #dedfd9;border-radius:10px;padding:10px 11px;background:#fafaf8;color:var(--ink);outline:none}input:focus,select:focus{border-color:#9dafA5;box-shadow:0 0 0 3px #edf2ef}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.recurrence-box{margin-top:13px;padding:12px;background:#f5f7f5;border-radius:11px}.recurrence-box p{font-size:10px;color:var(--muted);margin:8px 0 0}.modal-actions{display:flex;gap:8px;margin-top:20px}.spacer{flex:1}.danger{border:0;background:#fff0f0;color:#a44747;border-radius:10px;padding:9px 12px;cursor:pointer}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#26322d;color:#fff;padding:9px 14px;border-radius:10px;font-size:11px;transition:.2s;z-index:100}.toast.show{opacity:1;transform:translate(-50%,0)}.empty{padding:28px 10px;text-align:center;color:var(--muted);font-size:11px}
+@media(max-width:980px){.app-shell{grid-template-columns:72px 1fr}.brand>div:last-child,.nav span,.nav em,.sync-state span{display:none}.brand{padding-left:2px}.sidebar{padding-left:12px;padding-right:12px}.nav{justify-content:center}.planner-grid{grid-template-columns:1fr}.pending-panel{min-height:auto}.calendar{min-width:700px}.calendar-panel{overflow:auto}}
+@media(max-width:650px){.app-shell{display:block;padding-bottom:66px}.sidebar{position:fixed;z-index:40;bottom:0;top:auto;width:100%;height:64px;border:0;border-top:1px solid var(--line);padding:7px 10px;background:rgba(244,244,240,.95);backdrop-filter:blur(15px)}.brand,.sidebar-bottom{display:none}.sidebar nav{display:grid;grid-template-columns:repeat(5,1fr);height:100%}.nav{font-size:18px;padding:5px}.nav span{display:block;font-size:9px}.nav{flex-direction:column;gap:1px}.topbar{height:76px;padding:13px 15px}.topbar p{display:none}.topbar h1{font-size:19px}.top-actions .ghost{display:none}.view{padding:14px}.planner-grid{display:block}.calendar-panel{margin-top:12px}.pending-panel{padding:15px}.calendar{min-width:650px}.stats{grid-template-columns:1fr 1fr 1fr;gap:7px}.stat{padding:12px}.stat b{font-size:20px}.form-grid{grid-template-columns:1fr}.modal{max-height:92vh;overflow:auto}.section-intro{align-items:flex-start;flex-direction:column}.cards-grid{grid-template-columns:1fr}}
+
+/* v0.2 */
+.all-day-zone{min-height:34px;display:grid;gap:4px;margin-bottom:7px;padding-bottom:7px;border-bottom:1px dashed var(--line)}
+.all-day-event{border-left:3px solid var(--accent);background:#f1f2ed;padding:6px;border-radius:7px;cursor:pointer;overflow:hidden}
+.all-day-event.high{border-color:var(--high)}.all-day-event.medium{border-color:var(--med)}.all-day-event.low{border-color:var(--low)}
+.all-day-event b{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.switch-row,.switch-card{display:flex!important;align-items:center;justify-content:space-between;gap:16px;margin-top:13px;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fafaf8}
+.switch-row span,.switch-card span{display:block}.switch-row b,.switch-card b{display:block;color:var(--ink);font-size:11px}.switch-row small,.switch-card small{display:block;color:var(--muted);font-weight:400;margin-top:3px}
+.switch-row input,.switch-card input{width:18px;height:18px;flex:0 0 auto;accent-color:var(--accent)}
+.new-category-box{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin-top:10px;padding:12px;background:#f5f7f5;border-radius:11px}
+.compact{padding:10px 12px}.form-hint{font-size:10px;color:var(--muted);margin:10px 0 0}.form-error{margin-top:12px;padding:9px 11px;border-radius:9px;background:#fff0f0;color:#9d4141;font-size:11px}
+.small-modal{width:min(420px,100%)}.version{padding-top:16px;color:var(--muted);font-size:10px;text-align:right}
+@media(max-width:650px){.new-category-box{grid-template-columns:1fr}.switch-card{margin-top:0}}
+
+.category-picker{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
+.category-picker label{min-width:0}
+.category-new-btn{height:39px;white-space:nowrap}
+button:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:650px){
+  .category-picker{grid-template-columns:1fr}
+  .category-new-btn{width:100%}
+}
+
+</style>
+
+<style id="mobile-pwa-styles">
+.mobile-planner-switch{display:none}
+@media(max-width:650px){
+  html,body{min-height:100%;overscroll-behavior-y:none}
+  body{padding-top:env(safe-area-inset-top);background:#f5f5f1;-webkit-tap-highlight-color:transparent}
+  .app-shell{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+  .sidebar{height:calc(66px + env(safe-area-inset-bottom));padding:7px 6px calc(7px + env(safe-area-inset-bottom));}
+  .sidebar nav{grid-template-columns:repeat(4,1fr)}
+  .nav{min-width:0;font-size:19px}.nav span{font-size:10px;white-space:nowrap}
+  .topbar{height:68px;padding:10px 14px;top:env(safe-area-inset-top)}
+  .topbar h1{font-size:20px}.top-actions{gap:7px}.top-actions .primary{padding:10px 12px;font-size:12px}
+  .view{padding:12px 12px 22px}
+  .mobile-planner-switch{display:grid;grid-template-columns:1fr 1fr;background:#e9eae5;border-radius:12px;padding:3px;margin-bottom:10px}
+  .mobile-planner-switch button{border:0;background:transparent;border-radius:9px;padding:8px;font:inherit;font-size:12px;font-weight:700;color:var(--muted)}
+  .mobile-planner-switch button.active{background:#fff;color:var(--ink);box-shadow:0 1px 5px rgba(0,0,0,.08)}
+  .planner-grid{display:block}.planner-grid.mobile-calendar .pending-panel{display:none}.planner-grid:not(.mobile-calendar) .calendar-panel{display:none}
+  .pending-panel,.calendar-panel{margin:0;border-radius:15px;min-height:0}
+  .calendar-panel{overflow:visible}
+  .calendar-head{position:sticky;top:68px;z-index:4;background:#fff;border-radius:15px 15px 0 0;padding:12px}
+  .calendar{display:block;min-width:0;min-height:0;background:#fff}
+  .day{border-right:0;border-bottom:1px solid var(--line);padding:11px 12px;display:grid;grid-template-columns:52px 1fr;gap:10px}
+  .day:last-child{border-bottom:0}.day-head{border:0;margin:0;padding:0;text-align:center}.day-head b{font-size:9px}.day-head strong{margin-top:2px}
+  .day-drop{min-height:64px;gap:6px}.all-day-zone{min-height:0}.event,.all-day-event{padding:9px 10px}.event b,.all-day-event b{font-size:12px}.event time{font-size:10px}
+  .panel-head{align-items:center}.filters{margin:13px 0 8px}.task{padding:12px 10px;min-height:52px}.task-title{font-size:14px}.task-meta{font-size:11px}
+  .section-intro{gap:10px;margin-bottom:12px}.section-intro .primary{width:100%}.rec-card,.cat-card{padding:15px}
+  .backdrop{align-items:end;padding:0;background:rgba(24,30,27,.34)}
+  .modal{width:100%;max-width:none;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92dvh;overflow:auto}
+  .modal-head{position:sticky;top:-18px;background:#fff;z-index:2;padding-top:2px;padding-bottom:8px}
+  input,select{font-size:16px;min-height:44px}.primary,.ghost,.danger{min-height:44px}.icon-btn{min-width:40px;min-height:40px}
+  .modal-actions{position:sticky;bottom:calc(-18px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 calc(8px + env(safe-area-inset-bottom));z-index:2;flex-wrap:wrap}
+  .modal-actions .spacer{display:none}.modal-actions button{flex:1 1 auto}.modal-actions .danger{flex:0 1 auto}
+  .setting-row{align-items:flex-start}.status{white-space:nowrap}
+}
+@media(min-width:651px){.planner-grid .pending-panel,.planner-grid .calendar-panel{display:block!important}}
+</style>
+
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">T</div><div><b>TempoFlow</b><small>O teu tempo, organizado.</small></div></div>
+    <nav>
+      <button class="nav active" data-view="planner">▦ <span>Planeador</span></button>
+      <button class="nav" data-view="recurring">↻ <span>Recorrentes</span><em id="recCount">0</em></button>
+      <button class="nav" data-view="projects">◇ <span>Projetos</span><em id="projectCount">0</em></button>
+      <button class="nav" data-view="categories">◫ <span>Categorias</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sync-state"><i></i><span>Guardado neste dispositivo</span></div>
+      <button class="nav" data-view="settings">⚙ <span>Definições</span></button>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div><h1 id="viewTitle">Planeador</h1><p id="viewSubtitle">Organiza a semana sem complicações.</p></div>
+      <div class="top-actions"><button class="ghost" id="todayBtn">Hoje</button><button class="primary" id="newTaskBtn">＋ Nova tarefa</button></div>
+    </header>
+
+    <section id="planner" class="view active">
+      <div class="mobile-planner-switch" aria-label="Vista do planeador"><button class="active" data-mobile-pane="tasks">Tarefas</button><button data-mobile-pane="calendar">Calendário</button></div>
+      <div class="planner-grid">
+        <section class="panel pending-panel">
+          <div class="panel-head"><div><h2>Tarefas a fazer</h2><p><span id="pendingCount">0</span> pendentes · por prioridade</p></div><button class="icon-btn" id="quickAdd">＋</button></div>
+          <div class="filters"><button class="chip active" data-filter="all">Todas</button><button class="chip" data-filter="high">Alta</button><button class="chip" data-filter="medium">Média</button><button class="chip" data-filter="low">Baixa</button></div>
+          <div id="pendingList" class="task-list"></div>
+        </section>
+
+        <section class="panel calendar-panel">
+          <div class="calendar-head"><button class="icon-btn" id="prevWeek">‹</button><div><h2 id="weekLabel"></h2><p>Tarefas com horário e de dia inteiro.</p></div><button class="icon-btn" id="nextWeek">›</button></div>
+          <div id="calendar" class="calendar"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="recurring" class="view">
+      <div class="section-intro"><div><h2>Tarefas recorrentes</h2><p>Rotinas sem horário fixo. Cada período gera uma ocorrência nas tarefas pendentes.</p></div><button class="primary" id="newRecurringBtn">＋ Nova recorrente</button></div>
+      <div id="recurringList" class="cards-grid"></div>
+    </section>
+
+    <section id="projects" class="view">
+      <div class="section-intro"><div><h2>Projetos</h2><p>Agrupa vários passos que podem ser planeados em dias diferentes.</p></div><button class="primary" id="newProjectBtn">＋ Novo projeto</button></div>
+      <div id="projectList" class="cards-grid"></div>
+    </section>
+
+    <section id="categories" class="view">
+      <div class="section-intro"><div><h2>Categorias</h2><p>As categorias criadas ficam disponíveis em todas as tarefas.</p></div><button class="primary" id="newCategoryBtn">＋ Nova categoria</button></div>
+      <div id="categoryList" class="cards-grid"></div>
+    </section>
+
+    <section id="settings" class="view">
+      <div class="panel simple-panel settings">
+        <h2>Dados e sincronização</h2>
+        <div class="setting-row"><div><b>Modo offline</b><p>Os dados são guardados em IndexedDB e a aplicação continua funcional sem internet.</p></div><span class="status ok">Ativo</span></div>
+        <div class="setting-row"><div><b>Atualizações sem perder dados</b><p>O código da aplicação e os teus dados estão separados. As atualizações substituem a cache da app, mas mantêm a base de dados local e fazem migrações de formato quando necessário.</p></div><span class="status ok">Ativo</span></div>
+        <div class="setting-row"><div><b>Sincronização entre dispositivos</b><p>Será ativada depois dos testes da versão web, com autenticação por email e backend.</p></div><span class="status">Próxima fase</span></div>
+        <div class="setting-row"><div><b>Apple Calendar</b><p>Integração reservada para uma fase posterior.</p></div><span class="status">Futuro</span></div>
+        <div class="version">TempoFlow Mobile PWA v0.1 · base v0.4.20</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="modalBackdrop" class="backdrop hidden">
+  <div class="modal">
+    <div class="modal-head"><div><small id="modalKicker">TAREFA</small><h2 id="modalTitle">Nova tarefa</h2></div><button class="icon-btn" id="closeModal">×</button></div>
+    <form id="taskForm" novalidate>
+      <input type="hidden" id="taskId">
+      <label id="nameField">Nome<input id="taskName" required placeholder="Ex.: Rever relatório"></label>
+
+      <div class="form-grid">
+        <label id="categoryField">Categoria
+            <select id="taskCategory"></select>
+          </label>
+        <label id="priorityField">Prioridade
+          <select id="taskPriority"><option value="high">Alta</option><option value="medium" selected>Média</option><option value="low">Baixa</option></select>
+        </label>
+      </div>
+      <label id="projectField" style="margin-top:12px">Projeto <span>(opcional)</span><select id="taskProject"></select></label>
+<label class="switch-row" id="recurringToggleRow"><span><b>Tarefa recorrente</b><small>Cria uma nova ocorrência pendente em cada período.</small></span><input id="isRecurring" type="checkbox"></label>
+
+      <div id="recurrenceFields" class="recurrence-box hidden">
+        <label>Recorrência
+          <select id="taskRecurrence">
+            <option value="daily">Diária</option>
+            <option value="weekly">Semanal</option>
+            <option value="biweekly">A cada 2 semanas</option>
+            <option value="triweekly">A cada 3 semanas</option>
+            <option value="monthly">Mensal</option>
+            <option value="quarterly">Trimestral</option>
+            <option value="semiannual">Semestral</option>
+            <option value="annual">Anual</option>
+          </select>
+        </label>
+        <p>A recorrência não fica presa a um horário. A ocorrência aparece nas tarefas pendentes para a agendares quando quiseres.</p>
+      </div>
+
+      <div id="scheduleFields">
+        <div class="form-grid">
+          <label>Data <span>(opcional)</span><input id="taskDate" type="date"></label>
+          <label class="switch-card" id="allDayToggleField"><span><b>Ocupar dia inteiro</b><small>Sem hora de início/fim.</small></span><input id="allDay" type="checkbox"></label>
+        </div>
+        <div id="timedFields" class="form-grid">
+          <label>Hora de início <span>(opcional)</span><input id="taskStartTime" type="time"></label>
+          <label>Duração <span>(opcional)</span>
+            <div class="duration-inputs">
+              <span><input id="taskDurationHours" type="number" min="0" max="23" step="1" value="1" inputmode="numeric"><small>h</small></span>
+              <span><input id="taskDurationMinutes" type="number" min="0" max="59" step="5" value="0" inputmode="numeric"><small>min</small></span>
+            </div>
+          </label>
+        </div>
+        <div id="allDayFields" class="form-grid hidden">
+          <label>Até que dia <span>(opcional)</span><input id="taskEndDate" type="date"></label>
+        </div>
+        <p class="form-hint">Sem data, a tarefa fica nas pendentes. Com data e horário — ou “dia inteiro” — aparece no calendário.</p>
+        <label class="switch-row" id="frequencyToggleRow"><span><b>Repetir no calendário</b><small>Usa a mesma data/hora como ponto de partida.</small></span><input id="hasFrequency" type="checkbox"></label>
+        <div id="frequencyFields" class="recurrence-box hidden">
+          <div class="form-grid" style="margin-top:0">
+            <label>Frequência
+              <select id="taskFrequency">
+                <option value="weekly">Semanal</option>
+                <option value="biweekly">A cada 2 semanas</option>
+                <option value="triweekly">A cada 3 semanas</option>
+                <option value="monthly">Mensal</option>
+                <option value="quarterly">Trimestral</option>
+                <option value="semiannual">Semestral</option>
+                <option value="annual">Anual</option>
+              </select>
+            </label>
+            <label>Data de fim <span>(opcional)</span><input id="frequencyEndDate" type="date"></label>
+          </div>
+          <p>Se não definires uma data de fim, a tarefa repete-se indefinidamente no calendário.</p>
+        </div>
+      </div>
+
+      <div id="formError" class="form-error hidden"></div>
+      <div class="modal-actions"><button type="button" class="danger hidden" id="deleteTask">Eliminar</button><button type="button" class="ghost hidden" id="skipRecurringPeriod">Retirar de tarefas a fazer neste período</button><div class="spacer"></div><button type="button" class="ghost" id="cancelModal">Cancelar</button><button class="primary" type="submit" id="saveTaskBtn">Guardar</button></div>
+    </form>
+  </div>
+</div>
+
+<div id="categoryBackdrop" class="backdrop hidden">
+  <div class="modal small-modal">
+    <div class="modal-head"><div><small>CATEGORIA</small><h2>Criar nova categoria</h2></div><button class="icon-btn" id="closeCategoryModal">×</button></div>
+    <form id="categoryForm" novalidate>
+      <div class="form-grid category-create-grid">
+        <label>Emoji
+          <input id="categoryEmoji" class="emoji-input" maxlength="8" value="📁" aria-label="Emoji da categoria">
+        </label>
+        <label>Nome
+          <input id="categoryName" required placeholder="Ex.: Futebol">
+        </label>
+      </div>
+      <div id="categoryError" class="form-error hidden" role="alert"></div>
+      <div class="modal-actions"><div class="spacer"></div><button type="button" class="ghost" id="cancelCategory">Cancelar</button><button class="primary" type="submit">Guardar</button></div>
+    </form>
+  </div>
+</div>
+
+
+<div id="categoryTasksBackdrop" class="backdrop hidden">
+  <div class="modal category-tasks-modal">
+    <div class="modal-head">
+      <div><small>CATEGORIA</small><h2 id="categoryTasksTitle">Tarefas</h2></div>
+      <button class="icon-btn" id="closeCategoryTasks">×</button>
+    </div>
+    <div id="categoryTasksSummary" class="category-tasks-summary"></div>
+    <div id="categoryTasksList" class="task-list"></div>
+  </div>
+</div>
+
+
+<div id="projectBackdrop" class="backdrop hidden"><div class="modal"><div class="modal-head"><div><small>PROJETO</small><h2 id="projectModalTitle">Novo projeto</h2></div><button class="icon-btn" id="closeProjectModal">×</button></div><form id="projectForm" novalidate><input type="hidden" id="projectId"><label>Nome<input id="projectName" required placeholder="Ex.: Preparar viagem"></label><label style="margin-top:12px">Emoji<input id="projectEmoji" class="emoji-input" maxlength="8" value="🎯"></label><div id="projectError" class="form-error hidden"></div><div class="modal-actions"><button type="button" class="danger hidden" id="deleteProject">Eliminar projeto</button><div class="spacer"></div><button type="button" class="ghost" id="cancelProject">Cancelar</button><button class="primary" type="submit">Guardar</button></div></form></div></div>
+
+<div id="projectTasksBackdrop" class="backdrop hidden"><div class="modal category-tasks-modal"><div class="modal-head"><div><small>PROJETO</small><h2 id="projectTasksTitle">Projeto</h2></div><button class="icon-btn" id="closeProjectTasks">×</button></div><div id="projectTasksSummary" class="category-tasks-summary"></div><div class="modal-actions" style="margin:0 0 14px"><button class="primary" id="addProjectStep">＋ Adicionar passo</button><button class="ghost" id="editProject">Editar projeto</button></div><div id="projectTasksList" class="task-list"></div></div></div>
+
+<div id="categoryDeleteBackdrop" class="backdrop hidden"><div class="modal"><div class="modal-head"><div><small>ELIMINAR CATEGORIA</small><h2 id="categoryDeleteTitle">Eliminar categoria</h2></div><button class="icon-btn" id="closeCategoryDelete">×</button></div><p id="categoryDeleteText" class="form-hint"></p><label>Mover tarefas para<select id="categoryMoveTarget"></select></label><div class="modal-actions"><button class="danger" id="deleteCategoryAndTasks">Eliminar categoria + tarefas</button><div class="spacer"></div><button class="ghost" id="cancelCategoryDelete">Cancelar</button><button class="primary" id="moveAndDeleteCategory">Mover tarefas e eliminar</button></div></div></div>
+
+<div id="seriesDeleteBackdrop" class="backdrop hidden"><div class="modal"><div class="modal-head"><div><small>TAREFA COM FREQUÊNCIA</small><h2>Eliminar ocorrência</h2></div><button class="icon-btn" id="closeSeriesDelete">×</button></div><p id="seriesDeleteText" class="form-hint">O que pretendes eliminar?</p><div class="modal-actions" style="flex-wrap:wrap"><button type="button" class="ghost" id="deleteThisOccurrence">Apenas esta ocorrência</button><button type="button" class="danger" id="deleteThisAndFuture">Esta e todas as seguintes</button><div class="spacer"></div><button type="button" class="ghost" id="cancelSeriesDelete">Cancelar</button></div><p class="form-hint" style="margin-top:12px">As ocorrências anteriores nunca são eliminadas.</p></div></div>
+<div id="seriesEditBackdrop" class="backdrop hidden"><div class="modal"><div class="modal-head"><div><small>TAREFA COM FREQUÊNCIA</small><h2>Alterar ocorrência</h2></div><button class="icon-btn" id="closeSeriesEdit">×</button></div><p id="seriesEditText" class="form-hint">Esta tarefa pertence a uma série. Onde queres aplicar a alteração?</p><div class="modal-actions" style="flex-wrap:wrap"><button type="button" class="ghost" id="editThisOccurrence">Apenas esta ocorrência</button><button type="button" class="primary" id="editThisAndFuture">Esta e todas as seguintes</button><div class="spacer"></div><button type="button" class="ghost" id="cancelSeriesEdit">Cancelar</button></div><p class="form-hint" style="margin-top:12px">As ocorrências anteriores nunca são alteradas.</p></div></div>
+
+<div id="toast" class="toast"></div>
+<script>
+const DEFAULT_CATEGORIES=[{id:'home',name:'Casa',icon:'🏠',createdAt:1},{id:'work',name:'Trabalho',icon:'💼',createdAt:2},{id:'personal',name:'Pessoal',icon:'👤',createdAt:3}];
+const DB={db:null,async init(){this.db=await new Promise((res,rej)=>{const r=indexedDB.open('tempoflow',3);r.onupgradeneeded=()=>{const d=r.result;['tasks','recurring','categories','projects'].forEach(n=>{if(!d.objectStoreNames.contains(n))d.createObjectStore(n,{keyPath:'id'})})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})},store(n,m='readonly'){if(!this.db)throw new Error('A base de dados ainda está a iniciar.');return this.db.transaction(n,m).objectStore(n)},all(n){return new Promise((res,rej)=>{const r=this.store(n).getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})},put(n,v){return new Promise((res,rej)=>{const r=this.store(n,'readwrite').put(v);r.onsuccess=()=>res(v);r.onerror=()=>rej(r.error)})},del(n,id){return new Promise((res,rej)=>{const r=this.store(n,'readwrite').delete(id);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}};
+let state={tasks:[],recurring:[],categories:[],projects:[],weekStart:startWeek(new Date()),filter:'all',modalMode:'task',activeProject:null,activeCategory:null,activeOccurrenceDate:null,pendingSeriesDelete:null,pendingSeriesEdit:null,expandedCategories:new Set()};let appReady=false;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function uid(){return crypto.randomUUID?.()||Date.now()+'-'+Math.random()} function iso(d){return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)} function startWeek(d){d=new Date(d);const x=(d.getDay()+6)%7;d.setHours(0,0,0,0);d.setDate(d.getDate()-x);return d} function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function cat(id){return state.categories.find(c=>c.id===id)||{id:'unknown',name:'Sem categoria',icon:'📁'}} function project(id){return state.projects.find(p=>p.id===id)||null} function pLabel(p){return {high:'Alta',medium:'Média',low:'Baixa'}[p]||'Média'} function rLabel(r){return {daily:'Diária',weekly:'Semanal',biweekly:'A cada 2 semanas',triweekly:'A cada 3 semanas',monthly:'Mensal',quarterly:'Trimestral',semiannual:'Semestral',annual:'Anual'}[r]||r} function plusOneHour(t){if(!t)return'';let[h,m]=t.split(':').map(Number);h=(h+1)%24;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`} function durationFromTimes(start,end){if(!start||!end)return {h:1,m:0};const [sh,sm]=start.split(':').map(Number),[eh,em]=end.split(':').map(Number);let mins=(eh*60+em)-(sh*60+sm);if(mins<=0)mins=60;return {h:Math.floor(mins/60),m:mins%60}} function endFromDuration(start,h,m){if(!start)return'';const [sh,sm]=start.split(':').map(Number),dur=(Number(h)||0)*60+(Number(m)||0),total=sh*60+sm+dur;if(dur<=0||total>=1440)return'';return `${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`} function isScheduled(t){return !!(t.date&&(t.allDay||(t.startTime&&t.endTime)))} function dateInRange(date,start,end){return date>=start&&date<=(end||start)}
+function parseYMD(v){const [y,m,d]=String(v).split('-').map(Number);return new Date(y,m-1,d)}
+function sameCalendarDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function addFrequencyDate(start,frequency,n){const d=parseYMD(start);if(frequency==='weekly')d.setDate(d.getDate()+7*n);else if(frequency==='biweekly')d.setDate(d.getDate()+14*n);else if(frequency==='triweekly')d.setDate(d.getDate()+21*n);else if(frequency==='monthly')d.setMonth(d.getMonth()+n);else if(frequency==='quarterly')d.setMonth(d.getMonth()+3*n);else if(frequency==='semiannual')d.setMonth(d.getMonth()+6*n);else if(frequency==='annual')d.setFullYear(d.getFullYear()+n);return d}
+function frequencyOccursOn(t,dateStr){if(!t.hasFrequency||!t.date||dateStr<t.date||(t.frequencyEndDate&&dateStr>t.frequencyEndDate)||(t.frequencyExceptions||[]).includes(dateStr))return false;if(dateStr===t.date)return true;const target=parseYMD(dateStr),start=parseYMD(t.date);if(target<start)return false;const max=frequencyMaxSteps(t.frequency,start,target);for(let n=1;n<=max;n++){const d=addFrequencyDate(t.date,t.frequency,n);if(sameCalendarDay(d,target))return true;if(d>target)break}return false}
+function frequencyMaxSteps(f,start,target){const days=Math.ceil((target-start)/86400000);if(f==='weekly')return Math.ceil(days/7)+1;if(f==='biweekly')return Math.ceil(days/14)+1;if(f==='triweekly')return Math.ceil(days/21)+1;if(f==='monthly')return Math.ceil(days/28)+2;if(f==='quarterly')return Math.ceil(days/84)+2;if(f==='semiannual')return Math.ceil(days/168)+2;return Math.ceil(days/365)+2}
+function calendarTasksForDate(dateStr){const out=[];for(const t of state.tasks){if(t.allDay){if(t.hasFrequency){if(frequencyOccursOn(t,dateStr))out.push({...t,date:dateStr,endDate:dateStr,_series:true})}else if(t.date&&dateInRange(dateStr,t.date,t.endDate))out.push(t)}else if(t.startTime&&t.endTime){if(t.hasFrequency){if(frequencyOccursOn(t,dateStr))out.push({...t,date:dateStr,_series:true})}else if(t.date===dateStr)out.push(t)}}return out}
+function taskEnd(t){if(!isScheduled(t))return null;if(t.allDay)return new Date((t.endDate||t.date)+'T23:59:59.999');return new Date(`${t.date}T${t.endTime}:00`)} function isPast(t){const e=taskEnd(t);return !!e&&e.getTime()<Date.now()}
+async function refresh(){state.tasks=await DB.all('tasks');state.recurring=await DB.all('recurring');state.categories=(await DB.all('categories')).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));state.projects=(await DB.all('projects')).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0))}
+async function load(){try{await DB.init();let cats=await DB.all('categories');if(!cats.length)for(const c of DEFAULT_CATEGORIES)await DB.put('categories',c);await refresh();await migrate();await syncProjectCategories();if(!state.tasks.length&&!state.recurring.length)await seed();await generateCurrentRecurring();await refresh();render();appReady=true;['#newTaskBtn','#quickAdd','#newRecurringBtn','#newCategoryBtn','#newProjectBtn'].forEach(x=>{if($(x))$(x).disabled=false})}catch(e){console.error(e);toast('Não foi possível iniciar o armazenamento local.')}}
+async function migrate(){for(const t of state.tasks){let dirty=false;if(t.time&&!t.startTime){t.startTime=t.time;t.endTime=plusOneHour(t.time);delete t.time;dirty=true}if(t.allDay===undefined){t.allDay=false;dirty=true}if(t.endDate===undefined){t.endDate='';dirty=true}if(t.projectId===undefined){t.projectId='';dirty=true}if(t.hasFrequency===undefined){t.hasFrequency=false;dirty=true}if(t.frequency===undefined){t.frequency='weekly';dirty=true}if(t.frequencyEndDate===undefined){t.frequencyEndDate='';dirty=true}if(t.frequencyExceptions===undefined){t.frequencyExceptions=[];dirty=true}if(dirty)await DB.put('tasks',t)}await refresh()}
+async function seed(){const today=new Date(),tom=new Date(today);tom.setDate(today.getDate()+1);for(const x of [{name:'Rever relatório',category:'work',priority:'high',date:'',startTime:'',endTime:'',allDay:false,endDate:''},{name:'Comprar lâmpadas',category:'home',priority:'medium',date:'',startTime:'',endTime:'',allDay:false,endDate:''},{name:'Ginásio',category:'personal',priority:'medium',date:iso(today),startTime:'18:30',endTime:'19:30',allDay:false,endDate:''}])await DB.put('tasks',{id:uid(),...x,projectId:'',createdAt:Date.now(),source:'manual'});await DB.put('recurring',{id:uid(),name:'Limpar areia dos gatos',category:'home',recurrence:'weekly',createdAt:Date.now()});await refresh()}
+
+async function ensureProjectCategory(p){
+  if(!p)return null;
+  let c=p.categoryId&&state.categories.find(x=>x.id===p.categoryId);
+  if(!c)c=state.categories.find(x=>x.name.toLowerCase()===p.name.toLowerCase());
+  if(!c){c={id:'cat-proj-'+p.id,name:p.name,icon:p.icon||'🎯',createdAt:p.createdAt||Date.now()};await DB.put('categories',c);state.categories.push(c)}
+  else if(c.name!==p.name||c.icon!==(p.icon||'🎯')){c={...c,name:p.name,icon:p.icon||'🎯'};await DB.put('categories',c);const i=state.categories.findIndex(x=>x.id===c.id);if(i>=0)state.categories[i]=c}
+  if(p.categoryId!==c.id){p.categoryId=c.id;await DB.put('projects',p)}
+  return c;
+}
+async function syncProjectCategories(){
+  for(const p of state.projects){const c=await ensureProjectCategory(p);for(const t of state.tasks.filter(t=>t.projectId===p.id&&t.category!==c.id)){t.category=c.id;await DB.put('tasks',t)}}
+  await refresh();
+}
+function applyProjectCategory(projectId){const p=project(projectId),s=$('#taskCategory');if(p){const c=state.categories.find(x=>x.id===p.categoryId)||state.categories.find(x=>x.name.toLowerCase()===p.name.toLowerCase());if(c){fillCategories(c.id);s.value=c.id}s.disabled=true;$('#categoryField').querySelector('span')?.remove()}else s.disabled=false}
+
+function periodKey(r,d=new Date()){const y=d.getFullYear(),m=d.getMonth();if(r==='daily')return'D-'+iso(d);if(r==='annual')return`Y-${y}`;if(r==='semiannual')return`H-${y}-${Math.floor(m/6)+1}`;if(r==='quarterly')return`Q-${y}-${Math.floor(m/3)+1}`;if(r==='monthly')return`M-${y}-${String(m+1).padStart(2,'0')}`;const ws=startWeek(d);if(r==='biweekly'){const epoch=startWeek(new Date(2026,0,5));return'BW-'+Math.floor(Math.floor((ws-epoch)/604800000)/2)}if(r==='triweekly'){const epoch=startWeek(new Date(2026,0,5));return'TW-'+Math.floor(Math.floor((ws-epoch)/604800000)/3)}return'W-'+iso(ws)}
+function periodStart(r,d=new Date()){d=new Date(d);d.setHours(0,0,0,0);if(r==='daily')return d;if(r==='weekly')return startWeek(d);if(r==='biweekly'){let ws=startWeek(d),epoch=startWeek(new Date(2026,0,5)),weeks=Math.floor((ws-epoch)/604800000),grp=Math.floor(weeks/2);return new Date(epoch.getTime()+grp*14*86400000)}if(r==='triweekly'){let ws=startWeek(d),epoch=startWeek(new Date(2026,0,5)),weeks=Math.floor((ws-epoch)/604800000),grp=Math.floor(weeks/3);return new Date(epoch.getTime()+grp*21*86400000)}if(r==='monthly')return new Date(d.getFullYear(),d.getMonth(),1);if(r==='quarterly')return new Date(d.getFullYear(),Math.floor(d.getMonth()/3)*3,1);if(r==='semiannual')return new Date(d.getFullYear(),Math.floor(d.getMonth()/6)*6,1);return new Date(d.getFullYear(),0,1)}
+function nextPeriod(r,d){d=new Date(d);if(r==='daily')d.setDate(d.getDate()+1);else if(r==='weekly')d.setDate(d.getDate()+7);else if(r==='biweekly')d.setDate(d.getDate()+14);else if(r==='triweekly')d.setDate(d.getDate()+21);else if(r==='monthly')d.setMonth(d.getMonth()+1);else if(r==='quarterly')d.setMonth(d.getMonth()+3);else if(r==='semiannual')d.setMonth(d.getMonth()+6);else d.setFullYear(d.getFullYear()+1);return d}
+function periodLabel(r,d){const s=periodStart(r,d);if(r==='daily')return s.toLocaleDateString('pt-PT',{day:'2-digit',month:'short',year:'numeric'});const n=nextPeriod(r,s),e=new Date(n);e.setDate(e.getDate()-1);return `${s.toLocaleDateString('pt-PT',{day:'2-digit',month:'short'})}–${e.toLocaleDateString('pt-PT',{day:'2-digit',month:'short',year:'numeric'})}`}
+async function ensureOccurrence(r,d){const key=periodKey(r.recurrence,d);let t=state.tasks.find(t=>t.recurringId===r.id&&t.periodKey===key);if(!t){t={id:uid(),name:r.name,category:r.category,priority:'medium',date:'',startTime:'',endTime:'',allDay:false,endDate:'',projectId:'',createdAt:Date.now(),source:'recurring',recurringId:r.id,periodKey:key,periodLabel:periodLabel(r.recurrence,d)};await DB.put('tasks',t);state.tasks.push(t)}return t}
+async function generateRecurringForWeek(referenceDate=state.weekStart){
+  const ws=startWeek(referenceDate);
+  for(const r of state.recurring){
+    if(r.recurrence==='daily'){
+      // Nas diárias existe uma ocorrência por cada dia da semana que está a ser visualizada.
+      for(let i=0;i<7;i++){const d=new Date(ws);d.setDate(ws.getDate()+i);await ensureOccurrence(r,d)}
+    }else{
+      // As restantes recorrências são avaliadas relativamente à semana aberta no calendário.
+      await ensureOccurrence(r,ws)
+    }
+  }
+}
+async function generateCurrentRecurring(){await generateRecurringForWeek(state.weekStart)}
+function render(){renderPending();renderCalendar();renderRecurring();renderCategories();renderProjects();$('#recCount').textContent=state.recurring.length;$('#projectCount').textContent=state.projects.length}
+function renderPending(){
+  const now=new Date(),currentWs=startWeek(now),ws=startWeek(state.weekStart),we=new Date(ws);we.setDate(we.getDate()+6);
+  const todayIso=iso(now),wsIso=iso(ws),weIso=iso(we),isCurrentWeek=iso(ws)===iso(currentWs);
+  let all=state.tasks.filter(t=>{
+    if(isScheduled(t)||t.skippedPeriod)return false;
+    if(!t.recurringId)return true;
+    const r=state.recurring.find(x=>x.id===t.recurringId);if(!r)return false;
+    if(r.recurrence==='daily'){
+      // A lista acompanha a semana aberta. Na semana atual, dias já passados não contam;
+      // numa semana futura contam todos os dias. Semanas totalmente passadas não geram pendentes.
+      const day=(t.periodKey||'').replace(/^D-/,'');
+      if(weIso<todayIso)return false;
+      const lower=isCurrentWeek?todayIso:wsIso;
+      return day>=lower&&day<=weIso;
+    }
+    return t.periodKey===periodKey(r.recurrence,ws);
+  });
+  // No painel principal mostramos uma única linha por recorrente diária, representando
+  // o primeiro dia da semana que ainda falta planear, em vez de sete linhas iguais.
+  const seenDaily=new Set();
+  all=all.filter(t=>{if(!t.recurringId)return true;const r=state.recurring.find(x=>x.id===t.recurringId);if(r?.recurrence!=='daily')return true;if(seenDaily.has(t.recurringId))return false;seenDaily.add(t.recurringId);return true});
+  const pending=all.filter(t=>state.filter==='all'||(state.filter==='recurring'?!!t.recurringId:!t.recurringId&&t.priority===state.filter)).sort((a,b)=>(a.recurringId?0:1)-(b.recurringId?0:1)||({high:0,medium:1,low:2}[a.priority]-{high:0,medium:1,low:2}[b.priority])||(a.createdAt-b.createdAt));$('#pendingCount').textContent=all.length;const el=$('#pendingList');if(!pending.length){el.innerHTML='<div class="empty">Sem tarefas pendentes neste filtro.</div>';return}el.innerHTML=state.categories.map(c=>{const ts=pending.filter(t=>t.category===c.id);if(!ts.length)return '';const open=state.expandedCategories.has(c.id);return `<div class="category-block pending-category ${open?'is-open':''}"><button type="button" class="category-toggle" data-toggle-category="${c.id}" aria-expanded="${open}"><span>${c.icon} ${esc(c.name)}</span><span class="category-toggle-right"><em>${ts.length}</em><b>${open?'⌃':'⌄'}</b></span></button><div class="category-tasks ${open?'':'hidden'}">${ts.map(taskHTML).join('')}</div></div>`}).join('');$$('[data-toggle-category]',el).forEach(b=>b.onclick=()=>{const id=b.dataset.toggleCategory;if(state.expandedCategories.has(id))state.expandedCategories.delete(id);else state.expandedCategories.add(id);renderPending()});bindTasks(el)}
+function taskHTML(t){const pr=project(t.projectId);return `<div class="task" data-id="${t.id}"><div class="task-leading">${t.recurringId?'↻':'•'}</div><div><div class="task-title">${esc(t.name)}</div><div class="task-meta">${t.recurringId?'<b>Recorrente</b> · ':pLabel(t.priority)+' · '}${pr?pr.icon+' '+esc(pr.name)+' · ':''}${t.periodLabel||''}</div></div>${t.recurringId?'':`<i class="priority ${t.priority}"></i>`}</div>`}
+function bindTasks(root){root.querySelectorAll('.task[data-id]').forEach(x=>x.onclick=()=>openTask(x.dataset.id))}
+function renderCalendar(){const days=['SEG','TER','QUA','QUI','SEX','SÁB','DOM'],end=new Date(state.weekStart);end.setDate(end.getDate()+6);$('#weekLabel').textContent=`${state.weekStart.toLocaleDateString('pt-PT',{day:'numeric',month:'short'})} – ${end.toLocaleDateString('pt-PT',{day:'numeric',month:'short',year:'numeric'})}`;const today=iso(new Date());$('#calendar').innerHTML=days.map((name,i)=>{const d=new Date(state.weekStart);d.setDate(d.getDate()+i);const di=iso(d),dayTasks=calendarTasksForDate(di),allDay=dayTasks.filter(t=>t.allDay).sort((a,b)=>a.createdAt-b.createdAt),events=dayTasks.filter(t=>!t.allDay).sort((a,b)=>a.startTime.localeCompare(b.startTime));return `<div class="day ${di===today?'today':''}" data-date="${di}"><div class="day-head"><b>${name}</b><strong>${d.getDate()}</strong></div><div class="all-day-zone">${allDay.map(t=>`<div class="all-day-event ${t.priority} ${isPast(t)?'past-event':''}" ${t._series?'':'draggable="true"'} data-id="${t.id}" data-occurrence="${t._series?di:''}"><b>${esc(t.name)}${t._series?' ↻':''}</b></div>`).join('')}</div><div class="day-drop">${events.map(t=>`<div class="event ${t.priority} ${isPast(t)?'past-event':''}" ${t._series?'':'draggable="true"'} data-id="${t.id}" data-occurrence="${t._series?di:''}"><time>${t.startTime}–${t.endTime}${t._series?' · ↻':''}</time><b>${esc(t.name)}</b></div>`).join('')}</div></div>`}).join('');$$('.event,.all-day-event').forEach(e=>{e.onclick=()=>openTask(e.dataset.id,e.dataset.occurrence||'');if(e.draggable)e.ondragstart=x=>x.dataTransfer.setData('text/plain',e.dataset.id)});$$('.day').forEach(d=>{d.ondragover=e=>e.preventDefault();d.ondrop=async e=>{e.preventDefault();const t=state.tasks.find(x=>x.id===e.dataTransfer.getData('text/plain'));if(t){if(t.hasFrequency){toast('Edita a tarefa para alterar uma frequência.');return}if(t.allDay&&t.endDate){const dur=Math.max(0,Math.round((new Date(t.endDate)-new Date(t.date))/86400000)),nd=new Date(d.dataset.date+'T00:00'),ne=new Date(nd);ne.setDate(ne.getDate()+dur);t.endDate=iso(ne)}t.date=d.dataset.date;await DB.put('tasks',t);await refresh();render()}}})}
+function renderRecurring(){const el=$('#recurringList');if(!state.recurring.length){el.innerHTML='<div class="empty">Ainda não tens tarefas recorrentes.</div>';return}const order={daily:0,weekly:1,biweekly:2,triweekly:3,monthly:4,quarterly:5,semiannual:6,annual:7};const recurringSorted=[...state.recurring].sort((a,b)=>(order[a.recurrence]??99)-(order[b.recurrence]??99)||(a.createdAt||0)-(b.createdAt||0));el.innerHTML=recurringSorted.map(r=>`<article class="rec-card" data-rid="${r.id}"><div class="row"><div><h3>${esc(r.name)}</h3><p>${cat(r.category).icon} ${esc(cat(r.category).name)}</p></div><span class="rec-priority">RECORRENTE</span></div><span class="rec-badge">↻ ${rLabel(r.recurrence)}</span><button class="ghost plan-rec" data-plan="${r.id}" style="margin-top:12px">Planear próximas ocorrências</button></article>`).join('');$$('[data-rid]').forEach(x=>x.onclick=e=>{if(e.target.closest('[data-plan]'))return;openRecurring(x.dataset.rid)});$$('[data-plan]').forEach(x=>x.onclick=e=>{e.stopPropagation();openRecurringPlanner(x.dataset.plan)})}
+async function openRecurringPlanner(id){const r=state.recurring.find(x=>x.id===id);if(!r)return;let d=periodStart(r.recurrence,new Date());const choices=[];for(let i=0;i<12;i++){const key=periodKey(r.recurrence,d),existing=state.tasks.find(t=>t.recurringId===r.id&&t.periodKey===key);choices.push({d:new Date(d),key,existing});d=nextPeriod(r.recurrence,d)}const html=choices.map((x,i)=>`<div class="future-occ"><div><b>${periodLabel(r.recurrence,x.d)}</b><small>${x.existing&&isScheduled(x.existing)?'Já agendada para '+x.existing.date+(x.existing.startTime?' · '+x.existing.startTime:''):i===0?'Período atual':'Disponível para planear'}</small></div><button class="${x.existing&&isScheduled(x.existing)?'ghost':'primary'}" data-occ="${i}">${x.existing&&isScheduled(x.existing)?'Editar':'Agendar'}</button></div>`).join('');$('#projectTasksTitle').textContent='↻ '+r.name;$('#projectTasksSummary').textContent='Podes planear várias ocorrências com antecedência.';$('#projectTasksList').innerHTML=html;$('#addProjectStep').classList.add('hidden');$('#editProject').classList.add('hidden');state._recPlan={r,choices};$('#projectTasksBackdrop').classList.remove('hidden');$$('[data-occ]').forEach(b=>b.onclick=async()=>{const x=state._recPlan.choices[+b.dataset.occ],t=x.existing||await ensureOccurrence(r,x.d);await refresh();closeProjectTasks();openTask(t.id,x.existing?'':iso(x.d))})}
+function renderHistory(){const done=state.tasks.filter(isPast).sort((a,b)=>taskEnd(b)-taskEnd(a));$('#doneTotal').textContent=done.length;const now=new Date(),ws=startWeek(now),we=new Date(ws);we.setDate(we.getDate()+7);$('#doneWeek').textContent=done.filter(t=>taskEnd(t)>=ws&&taskEnd(t)<we).length;$('#doneRate').textContent='Auto';$('#completedList').innerHTML=done.length?done.map(t=>`<div class="task" data-id="${t.id}"><div class="task-leading">✓</div><div><div class="task-title">${esc(t.name)}</div><div class="task-meta">${cat(t.category).icon} ${esc(cat(t.category).name)} · ${t.date}${t.startTime?' · '+t.startTime+'–'+t.endTime:' · dia inteiro'}</div></div><i class="priority ${t.priority}"></i></div>`).join(''):'<div class="empty">Ainda não há tarefas cujo período agendado já tenha terminado.</div>';bindTasks($('#completedList'))}
+function categoryUniqueTasks(id){const groups=new Map();for(const t of state.tasks.filter(t=>t.category===id)){const key=(t.name||'').trim().toLocaleLowerCase('pt-PT')||t.id;const current=groups.get(key);if(!current){groups.set(key,t);continue}const score=x=>(x.hasFrequency?100:0)+(!isPast(x)?20:0)+(isScheduled(x)?5:0)+(x.createdAt||0)/1e15;if(score(t)>score(current))groups.set(key,t)}return [...groups.values()]}
+function renderCategories(){$('#categoryList').innerHTML=state.categories.map(c=>{const unique=categoryUniqueTasks(c.id);return `<button type="button" class="cat-card category-card-button" data-category-id="${c.id}"><h3>${c.icon} ${esc(c.name)}</h3><p>${unique.length} ${unique.length===1?'tarefa':'tarefas'}</p></button>`}).join('');$$('[data-category-id]').forEach(x=>x.onclick=()=>openCategoryTasks(x.dataset.categoryId))}
+function taskListHTML(tasks){return tasks.length?tasks.map(t=>{const pr=project(t.projectId),schedule=isScheduled(t)?` · ${t.date}${t.startTime?' · '+t.startTime+'–'+t.endTime:' · dia inteiro'}`:'';return `<div class="task ${isPast(t)?'task-completed':''}" data-list-task="${t.id}"><div class="task-leading">${isPast(t)?'✓':t.recurringId?'↻':'•'}</div><div><div class="task-title">${esc(t.name)}</div><div class="task-meta">${t.recurringId?'Recorrente':pLabel(t.priority)}${pr?' · '+pr.icon+' '+esc(pr.name):''}${schedule}</div></div><i class="priority ${t.priority}"></i></div>`}).join(''):'<div class="empty">Ainda não existem tarefas.</div>'}
+function openCategoryTasks(id){state.activeCategory=id;const c=cat(id),tasks=categoryUniqueTasks(id).sort((a,b)=>(isPast(a)?1:0)-(isPast(b)?1:0)||a.name.localeCompare(b.name,'pt-PT'));$('#categoryTasksTitle').textContent=`${c.icon} ${c.name}`;$('#categoryTasksSummary').innerHTML=`${tasks.length} ${tasks.length===1?'tarefa':'tarefas'} · <button class="text-danger" id="deleteThisCategory">Eliminar categoria</button>`;$('#categoryTasksList').innerHTML=taskListHTML(tasks);$$('[data-list-task]').forEach(x=>x.onclick=()=>{closeCategoryTasks();openTask(x.dataset.listTask)});$('#deleteThisCategory').onclick=()=>openCategoryDelete(id);$('#categoryTasksBackdrop').classList.remove('hidden')}
+function closeCategoryTasks(){$('#categoryTasksBackdrop').classList.add('hidden')}
+function openCategoryDelete(id){const c=cat(id),tasks=state.tasks.filter(t=>t.category===id),recs=state.recurring.filter(r=>r.category===id);state.activeCategory=id;$('#categoryDeleteTitle').textContent=`Eliminar ${c.icon} ${c.name}`;$('#categoryDeleteText').textContent=`Esta categoria tem ${tasks.length} tarefas e ${recs.length} recorrentes associadas. Podes movê-las para outra categoria ou eliminar tudo.`;const others=state.categories.filter(x=>x.id!==id);$('#categoryMoveTarget').innerHTML=others.map(x=>`<option value="${x.id}">${x.icon} ${esc(x.name)}</option>`).join('');$('#moveAndDeleteCategory').disabled=!others.length;$('#categoryDeleteBackdrop').classList.remove('hidden')}
+async function deleteCategory(mode){const id=state.activeCategory;if(!id)return;if(mode==='move'){const target=$('#categoryMoveTarget').value;if(!target)return;for(const t of state.tasks.filter(t=>t.category===id)){t.category=target;await DB.put('tasks',t)}for(const r of state.recurring.filter(r=>r.category===id)){r.category=target;await DB.put('recurring',r)}}else{for(const t of state.tasks.filter(t=>t.category===id))await DB.del('tasks',t.id);for(const r of state.recurring.filter(r=>r.category===id))await DB.del('recurring',r.id)}await DB.del('categories',id);await refresh();$('#categoryDeleteBackdrop').classList.add('hidden');closeCategoryTasks();render();toast('Categoria eliminada')}
+function renderProjects(){const el=$('#projectList');if(!state.projects.length){el.innerHTML='<div class="empty">Ainda não tens projetos.</div>';return}el.innerHTML=state.projects.map(p=>{const ts=state.tasks.filter(t=>t.projectId===p.id),planned=ts.filter(isScheduled).length;return `<button class="cat-card category-card-button" data-project-id="${p.id}"><h3>${p.icon} ${esc(p.name)}</h3><p>${ts.length} passos · ${planned} planeados</p></button>`}).join('');$$('[data-project-id]').forEach(x=>x.onclick=()=>openProjectTasks(x.dataset.projectId))}
+function openProjectTasks(id){const p=project(id);if(!p)return;state.activeProject=id;$('#projectTasksTitle').textContent=`${p.icon} ${p.name}`;const ts=state.tasks.filter(t=>t.projectId===id);$('#projectTasksSummary').textContent=`${ts.length} ${ts.length===1?'passo':'passos'} · ${ts.filter(isScheduled).length} no calendário`;$('#projectTasksList').innerHTML=taskListHTML(ts);$('#addProjectStep').classList.remove('hidden');$('#editProject').classList.remove('hidden');$$('[data-list-task]').forEach(x=>x.onclick=()=>{closeProjectTasks();openTask(x.dataset.listTask)});$('#projectTasksBackdrop').classList.remove('hidden')}
+function closeProjectTasks(){$('#projectTasksBackdrop').classList.add('hidden');state._recPlan=null}
+function openProjectModal(id=''){const p=project(id);$('#projectForm').reset();$('#projectId').value=id;$('#projectName').value=p?.name||'';$('#projectEmoji').value=p?.icon||'🎯';$('#projectModalTitle').textContent=p?'Editar projeto':'Novo projeto';$('#deleteProject').classList.toggle('hidden',!p);$('#projectError').classList.add('hidden');$('#projectBackdrop').classList.remove('hidden')}
+function fillCategories(selected=''){const s=$('#taskCategory');s.innerHTML=state.categories.map(c=>`<option value="${c.id}">${c.icon} ${esc(c.name)}</option>`).join('')+'<option value="__new__">＋ Nova categoria…</option>';if(selected&&state.categories.some(c=>c.id===selected))s.value=selected} function fillProjects(selected=''){const s=$('#taskProject');s.innerHTML='<option value="">Sem projeto</option>'+state.projects.map(p=>`<option value="${p.id}">${p.icon} ${esc(p.name)}</option>`).join('');s.value=selected||''}
+function resetTaskForm(){$('#taskForm').reset();$('#taskId').value='';$('#taskPriority').value='medium';$('#taskFrequency').value='weekly';$('#taskDurationHours').value='1';$('#taskDurationMinutes').value='0';$('#formError').classList.add('hidden');fillCategories(state.categories[0]?.id||'');fillProjects(state.activeProject||'');['#nameField','#categoryField','#priorityField','#projectField','#recurringToggleRow','#scheduleFields','#allDayToggleField','#frequencyToggleRow'].forEach(sel=>$(sel)?.classList.remove('hidden'));$('#deleteTask').classList.add('hidden');$('#skipRecurringPeriod')?.classList.add('hidden');$('#saveTaskBtn').textContent='Guardar';toggleRecurringUI();toggleAllDayUI();toggleFrequencyUI()}
+function openNew(rec=false,projectId=''){state.modalMode=rec?'recurring':'task';const old=state.activeProject;state.activeProject=projectId||old;resetTaskForm();if(projectId){$('#taskProject').value=projectId;applyProjectCategory(projectId)}else applyProjectCategory($('#taskProject').value);$('#isRecurring').checked=rec;toggleRecurringUI();$('#modalKicker').textContent=rec?'RECORRENTE':'TAREFA';$('#modalTitle').textContent=rec?'Nova tarefa recorrente':'Nova tarefa';$('#deleteTask').classList.add('hidden');$('#modalBackdrop').classList.remove('hidden')}
+function openTask(id,occurrenceDate=''){const t=state.tasks.find(x=>x.id===id);if(!t)return;state.activeOccurrenceDate=occurrenceDate||'';state.modalMode=t.recurringId?'recurringOccurrence':'task';resetTaskForm();$('#taskId').value=t.id;$('#taskName').value=t.name;fillCategories(t.category);fillProjects(t.projectId);applyProjectCategory(t.projectId);$('#taskPriority').value=t.priority;$('#taskDate').value=occurrenceDate||t.date||'';$('#taskStartTime').value=t.startTime||'';const dur=durationFromTimes(t.startTime,t.endTime);$('#taskDurationHours').value=dur.h;$('#taskDurationMinutes').value=dur.m;$('#allDay').checked=!!t.allDay;$('#taskEndDate').value=t.endDate||'';$('#hasFrequency').checked=!!t.hasFrequency;$('#taskFrequency').value=t.frequency||'weekly';$('#frequencyEndDate').value=t.frequencyEndDate||'';$('#isRecurring').checked=false;$('#recurringToggleRow').classList.add('hidden');toggleRecurringUI();toggleAllDayUI();toggleFrequencyUI();$('#modalKicker').textContent=t.recurringId?'OCORRÊNCIA RECORRENTE':'TAREFA';$('#modalTitle').textContent=t.name;if(t.recurringId){['#nameField','#categoryField','#priorityField','#projectField','#recurringToggleRow','#allDayToggleField','#allDayFields','#frequencyToggleRow','#frequencyFields'].forEach(sel=>$(sel)?.classList.add('hidden'));$('#scheduleFields').classList.remove('hidden');$('#timedFields').classList.remove('hidden');$('#allDay').checked=false;$('#hasFrequency').checked=false;$('#deleteTask').classList.add('hidden');$('#skipRecurringPeriod').classList.remove('hidden');$('#saveTaskBtn').textContent='Agendar'}else{$('#deleteTask').classList.remove('hidden');$('#saveTaskBtn').textContent='Guardar'}$('#modalBackdrop').classList.remove('hidden')}
+function openRecurring(id){const r=state.recurring.find(x=>x.id===id);if(!r)return;state.modalMode='recurring';resetTaskForm();$('#taskId').value=r.id;$('#taskName').value=r.name;fillCategories(r.category);fillProjects('');$('#taskRecurrence').value=r.recurrence;$('#isRecurring').checked=true;$('#recurringToggleRow').classList.remove('hidden');toggleRecurringUI();$('#modalKicker').textContent='RECORRENTE';$('#modalTitle').textContent=r.name;$('#deleteTask').classList.remove('hidden');$('#modalBackdrop').classList.remove('hidden')}
+function closeModal(){$('#modalBackdrop').classList.add('hidden');$('#recurringToggleRow').classList.remove('hidden');$('#skipRecurringPeriod')?.classList.add('hidden');$('#saveTaskBtn').textContent='Guardar';state.activeOccurrenceDate=null} function toggleRecurringUI(){const r=$('#isRecurring').checked||state.modalMode==='recurring';$('#recurrenceFields').classList.toggle('hidden',!r);$('#scheduleFields').classList.toggle('hidden',r);$('#taskProject').closest('label').classList.toggle('hidden',r);$('#priorityField').classList.toggle('hidden',r)} function toggleAllDayUI(){const on=$('#allDay').checked;$('#timedFields').classList.toggle('hidden',on);$('#allDayFields').classList.toggle('hidden',!on)} function toggleFrequencyUI(){$('#frequencyFields').classList.toggle('hidden',!$('#hasFrequency').checked)} function showFormError(m){$('#formError').textContent=m;$('#formError').classList.remove('hidden')}
+async function saveForm(e){e.preventDefault();$('#formError').classList.add('hidden');const name=$('#taskName').value.trim(),projectId=$('#taskProject').value;let category=$('#taskCategory').value;if(projectId){const p=project(projectId),c=await ensureProjectCategory(p);category=c.id}if(!name)return showFormError('Preenche o nome da tarefa.');if(!category||category==='__new__')return showFormError('Escolhe uma categoria.');const recurring=$('#isRecurring').checked||state.modalMode==='recurring',id=$('#taskId').value||uid();if(recurring){const old=state.recurring.find(x=>x.id===id);await DB.put('recurring',{id,name,category,recurrence:$('#taskRecurrence').value,createdAt:old?.createdAt||Date.now()});await refresh();await generateCurrentRecurring()}else{const old=state.tasks.find(x=>x.id===id),date=$('#taskDate').value,allDay=$('#allDay').checked,startTime=allDay?'':$('#taskStartTime').value,durationHours=allDay?0:Number($('#taskDurationHours').value||0),durationMinutes=allDay?0:Number($('#taskDurationMinutes').value||0),endTime=allDay?'':endFromDuration(startTime,durationHours,durationMinutes),endDate=allDay?$('#taskEndDate').value:'';if(allDay&&!date)return showFormError('Para ocupar o dia inteiro, escolhe a data.');if(date&&allDay&&endDate&&endDate<date)return showFormError('A data final não pode ser anterior à inicial.');if(startTime&&!date)return showFormError('Para definir a hora, escolhe também a data.');if(date&&!allDay&&!startTime&&(durationHours||durationMinutes))return showFormError('Define a hora de início.');if(date&&!allDay&&startTime&&(durationHours+durationMinutes<=0))return showFormError('A duração tem de ser superior a zero.');if(date&&!allDay&&startTime&&!endTime)return showFormError('A duração ultrapassa o fim do dia. Reduz a duração ou altera a hora de início.');const hasFrequency=$('#hasFrequency').checked,frequency=$('#taskFrequency').value,frequencyEndDate=$('#frequencyEndDate').value;if(hasFrequency&&!isScheduled({date,allDay,startTime,endTime}))return showFormError('Para repetir no calendário, define primeiro a data e o horário — ou dia inteiro.');if(hasFrequency&&frequencyEndDate&&frequencyEndDate<date)return showFormError('A data de fim da frequência não pode ser anterior à primeira ocorrência.');const payload={...(old||{}),id,name,category,priority:$('#taskPriority').value,projectId,date,startTime,endTime,allDay,endDate,hasFrequency,frequency,frequencyEndDate,frequencyExceptions:old?.frequencyExceptions||[],skippedPeriod:false,createdAt:old?.createdAt||Date.now(),source:old?.source||'manual'};if(old?.hasFrequency&&state.activeOccurrenceDate){const scheduleChanged=date!==state.activeOccurrenceDate||startTime!==old.startTime||endTime!==old.endTime||allDay!==old.allDay||endDate!==(old.endDate||'');if(scheduleChanged){state.pendingSeriesEdit={original:old,edited:payload,occurrenceDate:state.activeOccurrenceDate};$('#seriesEditText').textContent=`${old.name} · ${parseYMD(state.activeOccurrenceDate).toLocaleDateString('pt-PT')}. Onde queres aplicar a nova data/horário?`;$('#modalBackdrop').classList.add('hidden');$('#seriesEditBackdrop').classList.remove('hidden');return}}await DB.put('tasks',payload)}await refresh();closeModal();render();toast('Guardado')}
+async function skipRecurringCurrentPeriod(){
+  const id=$('#taskId').value,t=state.tasks.find(x=>x.id===id);if(!t?.recurringId)return;
+  const r=state.recurring.find(x=>x.id===t.recurringId);if(!r)return;
+  const now=new Date();
+  if(r.recurrence==='daily'){
+    const today=iso(now),we=startWeek(now);we.setDate(we.getDate()+6);const end=iso(we);
+    for(const x of state.tasks.filter(x=>x.recurringId===r.id&&!isScheduled(x))){const d=(x.periodKey||'').replace(/^D-/,'');if(d>=today&&d<=end){x.skippedPeriod=true;await DB.put('tasks',x)}}
+  }else{
+    const key=periodKey(r.recurrence,now);
+    for(const x of state.tasks.filter(x=>x.recurringId===r.id&&x.periodKey===key&&!isScheduled(x))){x.skippedPeriod=true;await DB.put('tasks',x)}
+  }
+  await refresh();closeModal();render();toast('Retirada das tarefas a fazer neste período');
+}
+async function deleteCurrent(){const id=$('#taskId').value;if(!id)return;const t=state.tasks.find(x=>x.id===id);if(state.modalMode!=='recurring'&&t?.hasFrequency&&state.activeOccurrenceDate){state.pendingSeriesDelete={id,occurrenceDate:state.activeOccurrenceDate};$('#seriesDeleteText').textContent=`${t.name} · ${parseYMD(state.activeOccurrenceDate).toLocaleDateString('pt-PT')}`;$('#modalBackdrop').classList.add('hidden');$('#seriesDeleteBackdrop').classList.remove('hidden');return}if(state.modalMode==='recurring'){await DB.del('recurring',id);for(const x of state.tasks.filter(x=>x.recurringId===id&&!isScheduled(x)))await DB.del('tasks',x.id)}else await DB.del('tasks',id);await refresh();closeModal();render();toast('Eliminado')}
+function closeSeriesDelete(){state.pendingSeriesDelete=null;$('#seriesDeleteBackdrop').classList.add('hidden');state.activeOccurrenceDate=null}
+async function deleteSeriesOccurrence(mode){const p=state.pendingSeriesDelete;if(!p)return;const t=state.tasks.find(x=>x.id===p.id);if(!t)return closeSeriesDelete();if(mode==='one'){const ex=new Set(t.frequencyExceptions||[]);ex.add(p.occurrenceDate);t.frequencyExceptions=[...ex].sort()}else{const d=parseYMD(p.occurrenceDate);d.setDate(d.getDate()-1);t.frequencyEndDate=iso(d)}await DB.put('tasks',t);await refresh();closeSeriesDelete();render();toast(mode==='one'?'Ocorrência eliminada':'Esta ocorrência e as seguintes foram eliminadas')}
+function closeSeriesEdit(){state.pendingSeriesEdit=null;$('#seriesEditBackdrop').classList.add('hidden');state.activeOccurrenceDate=null}
+async function applySeriesEdit(mode){const p=state.pendingSeriesEdit;if(!p)return;const old=state.tasks.find(x=>x.id===p.original.id);if(!old)return closeSeriesEdit();const ex=new Set(old.frequencyExceptions||[]);if(mode==='one'){ex.add(p.occurrenceDate);old.frequencyExceptions=[...ex].sort();await DB.put('tasks',old);const one={...p.edited,id:uid(),hasFrequency:false,frequencyEndDate:'',frequencyExceptions:[],createdAt:Date.now(),source:'manual'};await DB.put('tasks',one)}else{const prev=parseYMD(p.occurrenceDate);prev.setDate(prev.getDate()-1);old.frequencyEndDate=iso(prev);await DB.put('tasks',old);const future={...p.edited,id:uid(),frequencyExceptions:[],createdAt:Date.now(),source:'manual'};await DB.put('tasks',future)}await refresh();$('#seriesEditBackdrop').classList.add('hidden');state.pendingSeriesEdit=null;state.activeOccurrenceDate=null;render();toast(mode==='one'?'Só esta ocorrência foi alterada':'Alteração aplicada desta ocorrência para a frente')}
+let categoryReturnToTask=false,lastTaskCategory='';function openCategoryModal(fromTask=false){categoryReturnToTask=fromTask;$('#categoryForm').reset();$('#categoryEmoji').value='📁';$('#categoryError').classList.add('hidden');$('#categoryBackdrop').classList.remove('hidden')}function closeCategoryModal(){$('#categoryBackdrop').classList.add('hidden')}async function createCategory(name,icon){name=name.trim();if(!name)throw Error('Escreve um nome.');let c=state.categories.find(x=>x.name.toLowerCase()===name.toLowerCase());if(!c){c={id:'cat-'+uid(),name,icon:(icon||'📁').trim()||'📁',createdAt:Date.now()};await DB.put('categories',c);await refresh()}return c}
+function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)} function nav(view){$$('.view').forEach(v=>v.classList.toggle('active',v.id===view));$$('.nav[data-view]').forEach(n=>n.classList.toggle('active',n.dataset.view===view));const meta={planner:['Planeador','Organiza a semana sem complicações.'],recurring:['Recorrentes','Rotinas que voltam no momento certo.'],projects:['Projetos','Objetivos divididos em passos planeáveis.'],categories:['Categorias','Organiza tarefas por contexto.'],settings:['Definições','Dados, sincronização e preferências.']}[view];$('#viewTitle').textContent=meta[0];$('#viewSubtitle').textContent=meta[1]}
+$$('.nav[data-view]').forEach(n=>n.onclick=()=>nav(n.dataset.view));$$('.chip').forEach(c=>c.onclick=()=>{$$('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');state.filter=c.dataset.filter;renderPending()});
+// add recurring filter dynamically
+const filters=document.querySelector('.filters');filters.insertAdjacentHTML('afterbegin','<button class="chip" data-filter="recurring">↻ Recorrentes</button>');filters.querySelector('[data-filter="recurring"]').onclick=function(){$$('.chip').forEach(x=>x.classList.remove('active'));this.classList.add('active');state.filter='recurring';renderPending()};
+$('#newTaskBtn').onclick=()=>openNew(false,'');$('#quickAdd').onclick=()=>openNew(false,'');$('#newRecurringBtn').onclick=()=>openNew(true);$('#newProjectBtn').onclick=()=>openProjectModal();$('#closeModal').onclick=$('#cancelModal').onclick=closeModal;$('#taskForm').onsubmit=saveForm;$('#deleteTask').onclick=deleteCurrent;$('#skipRecurringPeriod').onclick=skipRecurringCurrentPeriod;$('#closeSeriesDelete').onclick=$('#cancelSeriesDelete').onclick=closeSeriesDelete;$('#deleteThisOccurrence').onclick=()=>deleteSeriesOccurrence('one');$('#deleteThisAndFuture').onclick=()=>deleteSeriesOccurrence('future');$('#seriesDeleteBackdrop').onclick=e=>{if(e.target.id==='seriesDeleteBackdrop')closeSeriesDelete()};$('#closeSeriesEdit').onclick=$('#cancelSeriesEdit').onclick=closeSeriesEdit;$('#editThisOccurrence').onclick=()=>applySeriesEdit('one');$('#editThisAndFuture').onclick=()=>applySeriesEdit('future');$('#seriesEditBackdrop').onclick=e=>{if(e.target.id==='seriesEditBackdrop')closeSeriesEdit()};$('#isRecurring').onchange=toggleRecurringUI;$('#allDay').onchange=toggleAllDayUI;$('#hasFrequency').onchange=toggleFrequencyUI;$('#modalBackdrop').onclick=e=>{if(e.target.id==='modalBackdrop')closeModal()};$('#prevWeek').onclick=async()=>{state.weekStart.setDate(state.weekStart.getDate()-7);await generateRecurringForWeek(state.weekStart);renderPending();renderCalendar()};$('#nextWeek').onclick=async()=>{state.weekStart.setDate(state.weekStart.getDate()+7);await generateRecurringForWeek(state.weekStart);renderPending();renderCalendar()};$('#todayBtn').onclick=async()=>{state.weekStart=startWeek(new Date());await generateRecurringForWeek(state.weekStart);nav('planner');renderPending();renderCalendar()};
+$('#taskProject').onchange=()=>applyProjectCategory($('#taskProject').value);$('#newCategoryBtn').onclick=()=>openCategoryModal(false);$('#taskCategory').onfocus=()=>lastTaskCategory=$('#taskCategory').value;$('#taskCategory').onchange=()=>{if($('#taskCategory').value==='__new__'){const prev=lastTaskCategory||state.categories[0]?.id||'';$('#taskCategory').value=prev;openCategoryModal(true)}};$('#closeCategoryModal').onclick=$('#cancelCategory').onclick=closeCategoryModal;$('#categoryBackdrop').onclick=e=>{if(e.target.id==='categoryBackdrop')closeCategoryModal()};$('#categoryForm').onsubmit=async e=>{e.preventDefault();try{const c=await createCategory($('#categoryName').value,$('#categoryEmoji').value);fillCategories(c.id);closeCategoryModal();render();if(categoryReturnToTask)$('#taskCategory').value=c.id;toast('Categoria criada')}catch(err){$('#categoryError').textContent=err.message;$('#categoryError').classList.remove('hidden')}};
+$('#closeCategoryTasks').onclick=closeCategoryTasks;$('#categoryTasksBackdrop').onclick=e=>{if(e.target.id==='categoryTasksBackdrop')closeCategoryTasks()};$('#closeCategoryDelete').onclick=$('#cancelCategoryDelete').onclick=()=>$('#categoryDeleteBackdrop').classList.add('hidden');$('#moveAndDeleteCategory').onclick=()=>deleteCategory('move');$('#deleteCategoryAndTasks').onclick=()=>deleteCategory('all');
+$('#closeProjectModal').onclick=$('#cancelProject').onclick=()=>$('#projectBackdrop').classList.add('hidden');$('#projectBackdrop').onclick=e=>{if(e.target.id==='projectBackdrop')$('#projectBackdrop').classList.add('hidden')};$('#projectForm').onsubmit=async e=>{e.preventDefault();const name=$('#projectName').value.trim();if(!name){$('#projectError').textContent='Escreve um nome para o projeto.';$('#projectError').classList.remove('hidden');return}const id=$('#projectId').value||uid(),old=project(id),p={id,name,icon:$('#projectEmoji').value.trim()||'🎯',categoryId:old?.categoryId||'',createdAt:old?.createdAt||Date.now()};await DB.put('projects',p);await refresh();const c=await ensureProjectCategory(project(id));for(const t of state.tasks.filter(t=>t.projectId===id)){t.category=c.id;await DB.put('tasks',t)}await refresh();$('#projectBackdrop').classList.add('hidden');render();toast('Projeto guardado')};$('#deleteProject').onclick=async()=>{const id=$('#projectId').value;for(const t of state.tasks.filter(t=>t.projectId===id)){t.projectId='';await DB.put('tasks',t)}await DB.del('projects',id);await refresh();$('#projectBackdrop').classList.add('hidden');render();toast('Projeto eliminado; os passos foram mantidos')};$('#closeProjectTasks').onclick=closeProjectTasks;$('#projectTasksBackdrop').onclick=e=>{if(e.target.id==='projectTasksBackdrop')closeProjectTasks()};$('#addProjectStep').onclick=()=>{const id=state.activeProject;closeProjectTasks();openNew(false,id)};$('#editProject').onclick=()=>{const id=state.activeProject;closeProjectTasks();openProjectModal(id)};
+['#newTaskBtn','#quickAdd','#newRecurringBtn','#newCategoryBtn','#newProjectBtn'].forEach(x=>{if($(x))$(x).disabled=true});load();
+</script>
+<style>
+.pending-category{margin-top:10px}.category-toggle{width:100%;min-height:38px;border:0;background:transparent;color:#5f6863;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 3px;cursor:pointer;text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}.category-toggle:hover{color:var(--ink)}.category-toggle-right{display:flex;align-items:center;gap:8px}.category-toggle-right em{font-style:normal;min-width:21px;height:21px;padding:0 6px;border-radius:11px;background:#f0f1ed;display:grid;place-items:center;font-size:10px;color:var(--muted);letter-spacing:0}.category-toggle-right b{font-size:15px;font-weight:500;line-height:1}.category-tasks{display:grid;gap:8px}.pending-category.is-open .category-toggle{margin-bottom:4px}
+</style>
+
+<script id="mobile-pwa-script">
+(function(){
+  const grid=document.querySelector('.planner-grid');
+  const switcher=document.querySelector('.mobile-planner-switch');
+  if(grid&&switcher){
+    switcher.addEventListener('click',e=>{
+      const b=e.target.closest('button[data-mobile-pane]'); if(!b)return;
+      switcher.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+      grid.classList.toggle('mobile-calendar',b.dataset.mobilePane==='calendar');
+    });
+  }
+  if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+})();
+</script>
+
+</body>
+</html>
+<style>
+.category-create-grid{grid-template-columns:92px minmax(0,1fr)!important}
+.emoji-input{text-align:center;font-size:22px!important}
+@media(max-width:420px){.category-create-grid{grid-template-columns:78px minmax(0,1fr)!important}}
+</style>
+
+<style>
+.category-card-button{
+  width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+}
+.category-card-button:hover{border-color:#b9c7c0;transform:translateY(-1px)}
+.category-card-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.category-tasks-modal{width:min(620px,100%)}
+.category-tasks-summary{font-size:11px;color:var(--muted);margin:-3px 0 14px}
+.duration-inputs{display:flex;gap:8px;align-items:center;margin-top:6px}.duration-inputs>span{display:flex;align-items:center;gap:5px;flex:1}.duration-inputs input{width:100%;min-width:0}.duration-inputs small{color:var(--muted);font-size:13px}.task-completed{opacity:.62}
+.task-completed .task-title{text-decoration:line-through}
+</style>
+
+<style>
+.task-leading{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#f0f2ef;color:var(--accent);font-size:11px;font-weight:800}.rec-priority{font-size:9px;font-weight:800;letter-spacing:.06em;color:var(--accent);background:var(--accent2);padding:5px 7px;border-radius:7px}.past-event{opacity:.55}.future-occ{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 4px;border-bottom:1px solid var(--line)}.future-occ div{display:grid;gap:3px}.future-occ b{font-size:12px}.future-occ small{font-size:10px;color:var(--muted)}.text-danger{border:0;background:transparent;color:#a44747;text-decoration:underline;cursor:pointer;font:inherit}.form-hint{font-size:10px;color:var(--muted);line-height:1.45}.version{font-size:10px;color:var(--muted);margin-top:16px}.all-day-zone{display:grid;gap:4px;margin-bottom:7px}.all-day-event{font-size:10px;background:#f2f5f3;border-left:3px solid var(--accent);padding:6px;border-radius:6px;cursor:pointer}.all-day-event.high{border-color:var(--high)}.all-day-event.medium{border-color:var(--med)}.all-day-event.low{border-color:var(--low)}.form-error{margin-top:12px;padding:10px 12px;border-radius:9px;background:#fff0f0;color:#9d4141;font-size:11px}
+</style>
